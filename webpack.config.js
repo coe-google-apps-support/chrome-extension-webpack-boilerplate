@@ -1,9 +1,8 @@
-var webpack = require("webpack"),
-    path = require("path"),
-    fileSystem = require("fs"),
-    env = require("./utils/env"),
-    HtmlWebpackPlugin = require("html-webpack-plugin"),
-    WriteFilePlugin = require("write-file-webpack-plugin");
+var webpack = require("webpack");
+var path = require("path");
+var fileSystem = require("fs");
+var env = require("./utils/env");
+var HtmlWebpackPlugin = require("html-webpack-plugin");
 
 // load the secrets
 var alias = {};
@@ -20,7 +19,10 @@ var options = {
   entry: {
     popup: path.join(__dirname, "src", "js", "popup.js"),
     options: path.join(__dirname, "src", "js", "options.js"),
-    background: path.join(__dirname, "src", "js", "background.js")
+    background: path.join(__dirname, "src", "js", "background.js"),
+    chat: path.join(__dirname, "src", "js", "chat.js"),
+    "load-livechat": path.join(__dirname, "src", "js", "livechat", "load-livechat.js"),
+    "livechat-tracking": path.join(__dirname, "src", "js", "livechat", "livechat-tracking.js")
   },
   output: {
     path: path.join(__dirname, "build"),
@@ -67,8 +69,7 @@ var options = {
       template: path.join(__dirname, "src", "background.html"),
       filename: "background.html",
       chunks: ["background"]
-    }),
-    new WriteFilePlugin()
+    })
   ]
 };
 
